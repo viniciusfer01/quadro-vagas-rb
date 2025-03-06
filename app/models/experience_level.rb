@@ -1,0 +1,2 @@
+class ExperienceLevel < ApplicationRecord
+end
