@@ -27,3 +27,5 @@ group :development, :test do
   gem "simplecov", require: false
   gem "shoulda-matchers"
 end
+
+gem "bcrypt", "~> 3.1"
