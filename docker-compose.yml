@@ -1,0 +1,23 @@
+services:
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
+    volumes:
+      - .:/app
+    environment:
+      - DB_HOST=database
+      - DB_PASSWORD=postgres
+      - DB_USERNAME=postgres
+  database:
+    image: postgres:17.4
+    volumes:
+      - pgdata:/var/lib/postgresql/data/pgdata
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+volumes:
+  pgdata:
