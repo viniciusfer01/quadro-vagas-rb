@@ -17,6 +17,7 @@ describe "Visitor sees job postings", type: :system do
     expect(page).to have_content(third_job_posting.title)
     expect(page).to have_content(third_job_posting.company_profile.name)
     expect(page).to have_content(third_job_posting.job_type.name)
+    expect(page).not_to have_content("There are no job postings available right now.")
   end
 
   it "and there are no job postings" do
