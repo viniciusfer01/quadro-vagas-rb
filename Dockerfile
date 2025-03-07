@@ -10,4 +10,4 @@ COPY Gemfile.lock .
 
 RUN bundle install
 
-CMD [ "bin/dev" ]
+CMD [ "bin/setup" ]
