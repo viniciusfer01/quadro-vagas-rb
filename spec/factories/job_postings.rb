@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :job_posting do
-    title { "MyString" }
-    company_profile { nil }
-    salary { "MyString" }
-    salary_currency { "MyString" }
-    salary_period { "MyString" }
+    sequence(:title) { |n| "Job Title #{n}" }
+    company_profile { create(:company_profile) }
+    sequence(:salary) { |n| "Salary #{n}" }
+    salary_currency { "USD" }
+    salary_period { "Monthly" }
   end
 end
