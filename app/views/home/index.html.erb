@@ -3,7 +3,7 @@
     <% @job_postings.each do |job| %>    
       <li class="flex items-start gap-4 px-4 py-3">
         <div class="flex flex-col gap-0 min-h-[2rem] items-start justify-center w-full">
-          <h4 class="w-full text-base text-slate-700"><%= job.title %></h4>
+          <h4 class="w-full text-base text-slate-700"><%= link_to job.title, job_posting_path(job) %></h4>
           <p class="w-full text-sm text-slate-500">Job location type</p>
           <p class="w-full text-sm text-slate-500"><%= job.job_type.name %></p>
           <p class="w-full text-sm text-slate-500"><%= job.company_profile.name %></p>
