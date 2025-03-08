@@ -9,7 +9,7 @@ describe "Visitor search for jobs by title and description", type: :system do
     create(:job_posting, title: "DragonRuby Game Dev Sr.", description: "Game Developer")
 
     visit root_path
-    fill_in "title", with: "ruby"
+    fill_in "query", with: "ruby"
     find("#search_button").click
 
     expect(page).to have_content "RUBY on Rails Dev Jr."
@@ -27,7 +27,7 @@ describe "Visitor search for jobs by title and description", type: :system do
     create(:job_posting, title: "DragonRuby Game Dev Sr.", description: "Game Developer")
 
     visit root_path
-    fill_in "title", with: ""
+    fill_in "query", with: ""
     find("#search_button").click
 
     expect(page).to have_content "Por favor, digite algum valor para a busca"
@@ -46,7 +46,7 @@ describe "Visitor search for jobs by title and description", type: :system do
     create(:job_posting, title: "DragonRuby Game Dev Sr.", description: "Game Developer")
 
     visit root_path
-    fill_in "title", with: "Node"
+    fill_in "query", with: "Node"
     find("#search_button").click
 
     expect(page).to have_content "Nenhuma vaga encontrada."
