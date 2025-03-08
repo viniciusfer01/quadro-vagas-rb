@@ -13,7 +13,7 @@ describe "Visitor search for jobs", type: :system do
     find("#search_button").click
 
     expect(page).to have_content "RUBY on Rails Dev Jr."
-    expect(page).to have_content "DragonRuby Game Dev Sr."
+    expect(page).not_to have_content "DragonRuby Game Dev Sr."
     expect(page).not_to have_content "Sinatra Developer Jr."
     expect(page).not_to have_content "Sinatra Dev Pl."
     expect(page).not_to have_content "Rails Developer Pl."

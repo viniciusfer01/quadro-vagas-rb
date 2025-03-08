@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 
   def search
     if params[:title].present?
-      @job_postings = JobPosting.where("title ILIKE ?", "%#{params[:title]}%")
+      @job_postings = JobPosting.search_jobs(params[:title])
       return render :index
     end
     redirect_to root_path, alert: t(".alert")
