@@ -8,11 +8,10 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(registration_params)
     if @user.save
-      flash[:notice] = "Usuário criado com sucesso."
+      flash[:notice] = t(".success")
       after_registration_url
     else
-      @user.valid?
-      flash.now[:alert] = "Erro ao criar usuário."
+      flash.now[:alert] = t(".alert")
       render :new, status: :unprocessable_entity
     end
   end
