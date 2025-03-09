@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_08_150611) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_08_170459) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -69,12 +69,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_150611) do
   create_table "job_postings", force: :cascade do |t|
     t.string "title"
     t.bigint "company_profile_id", null: false
-    t.string "salary"
+    t.decimal "salary"
     t.string "salary_currency"
     t.string "salary_period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "job_type_id", null: false
+    t.string "work_arrangement"
+    t.bigint "experience_level_id", null: false
+    t.string "job_location"
     t.index ["company_profile_id"], name: "index_job_postings_on_company_profile_id"
+    t.index ["experience_level_id"], name: "index_job_postings_on_experience_level_id"
+    t.index ["job_type_id"], name: "index_job_postings_on_job_type_id"
   end
 
   create_table "job_types", force: :cascade do |t|
@@ -104,5 +110,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_150611) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "job_postings", "company_profiles"
+  add_foreign_key "job_postings", "experience_levels"
+  add_foreign_key "job_postings", "job_types"
   add_foreign_key "sessions", "users"
 end
