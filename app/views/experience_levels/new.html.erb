@@ -1,0 +1,11 @@
+<h1> Adicionar Novo Nível de Experiência </h1>
+
+<%= form_with model: @experience_level do |f| %>
+
+  <%= f.label :name, 'Nome' %>
+  <%= f.text_field :name  %>
+
+  <%= f.check_box :status, {}, :archived, :active %>
+
+  <%= f.submit "Salvar" %>
+<% end %>
