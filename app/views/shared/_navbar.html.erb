@@ -19,6 +19,18 @@
         <li role="none" class="flex items-stretch">
           <a role="menuitem" aria-haspopup="false" class="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8" > <span>Home</span></a>
         </li>
+        <% if authenticated? %>
+          <li role="none" class="flex items-stretch">
+            <%= link_to t('.company_profile'), company_profiles_path, class:"flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8 hover:cursor-pointer", role:"menuitem", aria: { 'haspopup':"false" } %>
+          </li>
+          <li role="none" class="flex items-stretch">
+            <%= button_to t('.sign_out'), session_path, method: :delete, class: "hover:cursor-pointer", role: "menuitem", aria: { 'haspopup': "false" }, form: { class: "flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8" } %>
+          </li>
+        <% else %>
+          <li role="none" class="flex items-stretch">
+            <%= link_to t('.sign_in'), new_session_path, class:"flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8 hover:cursor-pointer", role:"menuitem", aria: { 'haspopup':"false" } %>
+          </li>
+        <% end %>
       </ul>
     </nav>
   </div>

@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :company_profile do
-    name { "MyString" }
-    website_url { "MyString" }
-    contact_email { "MyString" }
+    association :user
+    name { "BlinkedOn" }
+    website_url { "https://blinkedon.tech" }
+    contact_email { "contact@blinkedon.tech" }
   end
 end

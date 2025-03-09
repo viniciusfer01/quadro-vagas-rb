@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      company_profile:
+        one: Company Profile
+        other: Company Profiles
+    attributes:
+      company_profile:
+        name: Name
+        contact_email: Contact Email
+        website_url: Website URL

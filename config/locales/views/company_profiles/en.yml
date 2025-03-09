@@ -1,0 +1,11 @@
+en:
+  company_profiles:
+    index:
+      company_profile_detail: 'My Company Profile'
+      no_profile: You have no Company Profile associated to your account yet.
+      create_profile: Create Company Profile
+    new:
+      create_profile: Create Company Profile
+    create:
+      success: Company Profile created successfully!
+      failure: Error while trying to create a Company Profile

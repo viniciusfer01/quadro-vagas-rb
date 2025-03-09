@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      company_profile:
+        one: Perfil de Empresa
+        other: Perfis de Empresa
+    attributes:
+      company_profile:
+        name: Nome
+        contact_email: Email de Contato
+        website_url: URL do Site

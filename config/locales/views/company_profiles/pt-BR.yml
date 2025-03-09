@@ -1,0 +1,11 @@
+pt-BR:
+  company_profiles:
+    index:
+      company_profile_detail: 'Perfil da minha Empresa'
+      no_profile: Você ainda não tem um Perfil de Empresa associado a sua conta.
+      create_profile: Criar Perfil de Empresa
+    new:
+      create_profile: Criar Perfil de Empresa
+    create:
+      success: Perfil de Empresa criado com sucesso!
+      failure: Erro ao tentar criar Perfil de Empresa
