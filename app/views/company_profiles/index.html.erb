@@ -1,17 +1,25 @@
 <% if Current.user.company_profile.present? %>
-  <div class="flex flex-col gap-8">
+  <article class="flex flex-col gap-8">
     <h1><%= t('.company_profile_detail') %></h1>
 
-    <p>
-      <span class="font-bold mr-1 text-emerald-600"><%= CompanyProfile.human_attribute_name(:name) %>: </span><%= @company_profile.name %>
-    </p>
-    <p>
-      <span class="font-bold mr-1 text-emerald-600"><%= CompanyProfile.human_attribute_name(:website_url) %>: </span><%= @company_profile.website_url %>
-    </p>
-    <p>
-      <span class="font-bold mr-1 text-emerald-600"><%= CompanyProfile.human_attribute_name(:contact_email) %>: </span><%= @company_profile.contact_email %>
-    </p>
-  </div>
+    <section class="flex gap-4">
+      <aside class="w-32 h-32">
+        <%= image_tag @company_profile.logo %>
+      </aside>
+
+      <summary class="flex flex-col gap-2 justify-center">
+        <p class="font-light">
+          <span class="font-bold mr-1 text-emerald-600"><%= CompanyProfile.human_attribute_name(:name) %>: </span><%= @company_profile.name %>
+        </p>
+        <p class="font-light">
+          <span class="font-bold mr-1 text-emerald-600"><%= CompanyProfile.human_attribute_name(:website_url) %>: </span><%= @company_profile.website_url %>
+        </p>
+        <p class="font-light">
+          <span class="font-bold mr-1 text-emerald-600"><%= CompanyProfile.human_attribute_name(:contact_email) %>: </span><%= @company_profile.contact_email %>
+        </p>
+      </summary>
+    </section>
+  </article>
 <% else %>
   <div class="flex flex-col gap-8">
     <h1><%= t('.no_profile') %></h1>

@@ -21,6 +21,6 @@ class CompanyProfilesController < ApplicationController
   private
 
   def company_profile_params
-    params.require(:company_profile).permit(:name, :website_url, :contact_email)
+    params.require(:company_profile).permit(:name, :website_url, :contact_email, :logo)
   end
 end
