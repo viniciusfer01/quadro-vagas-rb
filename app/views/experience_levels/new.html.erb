@@ -1,11 +1,20 @@
 <h1> Adicionar Novo Nível de Experiência </h1>
 
+<% if @experience_level.errors.any? %>
+<ul>
+  <% @experience_level.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
 <%= form_with model: @experience_level do |f| %>
 
-  <%= f.label :name, 'Nome' %>
+  <%= f.label :name %>
   <%= f.text_field :name  %>
 
-  <%= f.check_box :status, {}, :archived, :active %>
+  <%= f.label :status %>
+  <%= f.select :status, ExperienceLevel.statuses.map { |key, _| [t("activerecord.attributes.experience_level.statuses.#{key}"), key] } %>
 
   <%= f.submit "Salvar" %>
 <% end %>

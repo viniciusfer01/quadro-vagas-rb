@@ -15,5 +15,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :experience_levels, only: [ :index, :new, :create ]
+  resources :experience_levels, only: [ :index, :new, :create, :edit, :update ] do
+    post :active, on: :member
+    post :archive, on: :member
+  end
 end
