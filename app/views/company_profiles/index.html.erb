@@ -12,7 +12,7 @@
           <span class="font-bold mr-1 text-emerald-600"><%= CompanyProfile.human_attribute_name(:name) %>: </span><%= @company_profile.name %>
         </p>
         <p class="font-light">
-          <span class="font-bold mr-1 text-emerald-600"><%= CompanyProfile.human_attribute_name(:website_url) %>: </span><%= @company_profile.website_url %>
+          <span class="font-bold mr-1 text-emerald-600"><%= CompanyProfile.human_attribute_name(:website_url) %>: </span><a href="<%= @company_profile.website_url %>" target="_blank" rel="noopener noreferrer" class="hover:underline hover:decoration-emerald-500 hover:underline-offset-2"><%= @company_profile.website_url %></a>
         </p>
         <p class="font-light">
           <span class="font-bold mr-1 text-emerald-600"><%= CompanyProfile.human_attribute_name(:contact_email) %>: </span><%= @company_profile.contact_email %>

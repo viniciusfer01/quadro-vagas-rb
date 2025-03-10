@@ -10,3 +10,7 @@ en:
         contact_email: Contact Email
         website_url: Website URL
         logo: Logo
+  errors:
+    messages:
+      invalid_image_format: 'image format must be one of the following: JPG, JPEG or PNG.'
+      invalid_email_equals_user_email: 'must not be equal to your own user email address'
