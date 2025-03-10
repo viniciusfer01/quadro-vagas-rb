@@ -9,8 +9,8 @@ describe 'User tries to create a company profile' do
   end
 
   it 'and fails to get the form because they already have a company profile', type: :request do
-    user = FactoryBot.create(:user)
-    FactoryBot.create(:company_profile, user: user)
+    user = create(:user)
+    create(:company_profile, user: user)
     cookie_jar = ActionDispatch::Request.new(Rails.application.env_config.deep_dup).cookie_jar
     user.sessions.create!.tap do |session|
       cookie_jar.signed.permanent[:session_id] = { value: session.id, httponly: true, samesite: :lax }
@@ -24,8 +24,8 @@ describe 'User tries to create a company profile' do
   end
 
   it 'and fails to create a company profile for being unauthenticated', type: :request do
-    user = FactoryBot.create(:user)
-    FactoryBot.create(:company_profile, user: user)
+    user = create(:user)
+    create(:company_profile, user: user)
     file = Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'files', 'logo.jpg'), 'image/jpg')
 
     post(company_profiles_path, params: { company_profile: {
@@ -40,8 +40,8 @@ describe 'User tries to create a company profile' do
   end
 
   it 'and fails to create a company profile because they already have one', type: :request do
-    user = FactoryBot.create(:user)
-    FactoryBot.create(:company_profile, user: user)
+    user = create(:user)
+    create(:company_profile, user: user)
     cookie_jar = ActionDispatch::Request.new(Rails.application.env_config.deep_dup).cookie_jar
     user.sessions.create!.tap do |session|
       cookie_jar.signed.permanent[:session_id] = { value: session.id, httponly: true, samesite: :lax }

@@ -11,7 +11,7 @@ RSpec.describe CompanyProfile, type: :model do
 
     context '#comparison_with_user_email' do
       it 'should not be equal to the user email' do
-        user = FactoryBot.create(:user, email_address: 'not_allowed@email.com')
+        user = create(:user, email_address: 'not_allowed@email.com')
         company_profile = FactoryBot.build(:company_profile, contact_email: 'not_allowed@email.com', user: user)
 
         expect(company_profile).not_to be_valid
@@ -20,8 +20,8 @@ RSpec.describe CompanyProfile, type: :model do
 
     context "#user_uniqueness" do
       it 'should allow only one company profile per user' do
-        user = FactoryBot.create(:user)
-        FactoryBot.create(:company_profile, user: user)
+        user = create(:user)
+        create(:company_profile, user: user)
         invalid_company_profile = FactoryBot.build(:company_profile, user: user)
 
         expect(invalid_company_profile).to be_invalid

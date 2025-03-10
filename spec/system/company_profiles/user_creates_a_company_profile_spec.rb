@@ -2,14 +2,14 @@ require 'rails_helper'
 
 describe 'Registered user tries to access the page to create a company profile' do
   it 'but first, has to be signed in', type: :system do
-    User.create!(email_address: 'my@email.com', password: 'strong123')
+    create(:user)
     visit root_path
 
     expect(page).not_to have_link 'Perfil da Empresa'
   end
 
   it 'and succeeds', type: :system, js: true do
-    user = User.create!(email_address: 'my@email.com', password: 'strong123')
+    user = create(:user)
     visit root_path
 
     click_on 'Entrar'
@@ -37,7 +37,7 @@ describe 'Registered user tries to access the page to create a company profile' 
   end
 
   it 'and fails when informing invalid data', type: :system, js: true do
-    user = User.create!(email_address: 'my@email.com', password: 'strong123')
+    user = create(:user)
     visit root_path
 
     click_on 'Entrar'
