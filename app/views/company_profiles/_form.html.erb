@@ -5,7 +5,7 @@
     <%= f.label :name, for: 'company_profile_name', class: "cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-0 -top-2 z-[1] text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent" %>
 
     <% if @company_profile.errors[:name].any? %>
-      <small class="absolute flex justify-between w-full px-4 py-1 text-xs transition text-slate-400 peer-invalid:text-pink-500">
+      <small class="absolute flex justify-between w-full py-1 text-xs transition text-pink-500">
         <span>
           <%= @company_profile.errors.full_messages_for(:name).join(", ") %>
         </span>
@@ -19,7 +19,7 @@
     <%= f.label :contact_email, class: "cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-0 -top-2 z-[1] text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent" %>
 
     <% if @company_profile.errors[:contact_email].any? %>
-      <small class="absolute flex justify-between w-full px-4 py-1 text-xs transition text-slate-400 peer-invalid:text-pink-500">
+      <small class="absolute flex justify-between w-full py-1 text-xs transition text-pink-500">
         <span>
           <%= @company_profile.errors.full_messages_for(:contact_email).join(", ") %>
         </span>
@@ -33,7 +33,7 @@
     <%= f.label :website_url, class: "cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-0 -top-2 z-[1] text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent" %>
 
     <% if @company_profile.errors[:website_url].any? %>
-      <small class="absolute flex justify-between w-full px-4 py-1 text-xs transition text-slate-400 peer-invalid:text-pink-500">
+      <small class="absolute flex justify-between w-full py-1 text-xs transition text-pink-500">
         <span>
           <%= @company_profile.errors.full_messages_for(:website_url).join(", ") %>
         </span>
@@ -47,7 +47,7 @@
     <%= f.label :logo, class: "absolute -top-2 left-0 z-[1] cursor-text text-xs text-slate-400 transition-all before:absolute before:left-0 before:top-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-autofill:-top-2 peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent" %>
 
     <% if @company_profile.errors[:logo].any? %>
-      <small class="absolute flex justify-between w-full py-1 text-xs transition text-slate-400 peer-invalid:text-pink-500">
+      <small class="absolute flex justify-between w-full py-1 text-xs transition text-pink-500">
         <span>
           <%= @company_profile.errors.full_messages_for(:logo).join(", ") %>
         </span>

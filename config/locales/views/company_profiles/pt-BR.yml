@@ -6,6 +6,7 @@ pt-BR:
       create_profile: Criar Perfil de Empresa
     new:
       create_profile: Criar Perfil de Empresa
+      user_already_has_a_company_profile: Você já criou um Perfil de Empresa
     create:
       success: Perfil de Empresa criado com sucesso!
       failure: Erro ao tentar criar Perfil de Empresa
