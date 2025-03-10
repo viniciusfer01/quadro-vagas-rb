@@ -12,5 +12,5 @@ pt-BR:
         logo: Logo
   errors:
     messages:
-      invalid_image_format: 'o formato da imagem deve ser um dos seguintes: JPG, JPEG ou PNG.'
+      invalid_image_format: 'deve ser uma imagem em um dos seguintes formatos: JPG, JPEG ou PNG.'
       invalid_email_equals_user_email: 'deve ser diferente do email registrado para como seu email de usuario'

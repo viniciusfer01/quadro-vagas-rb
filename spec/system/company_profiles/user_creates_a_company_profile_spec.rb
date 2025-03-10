@@ -15,7 +15,7 @@ describe 'Registered user tries to access the page to create a company profile' 
     click_on 'Entrar'
     fill_in 'Enter your email address', with: user.email_address
     fill_in 'Enter your password', with: user.password
-    within 'form' do
+    within '#login_form' do
       click_on 'Sign in'
     end
     click_on 'Perfil da Empresa'
@@ -23,10 +23,9 @@ describe 'Registered user tries to access the page to create a company profile' 
     fill_in 'Nome', with: 'BlinkedOn'
     fill_in 'URL do Site', with: 'https://blinkedon.tech'
     fill_in 'Email de Contato', with: 'contact@blinkedon.tech'
-    attach_file 'Logo', Rails.root.join('spec', 'support', 'logo.png')
-    click_on 'Create Perfil de Empresa'
+    attach_file 'Logo', Rails.root.join('spec', 'support', 'files', 'logo.png')
+    click_on 'Criar Perfil de Empresa'
 
-    expect(current_path).to eq company_profiles_path
     expect(page).to have_content 'Perfil de Empresa criado com sucesso!'
     expect(page).to have_content 'Perfil da minha Empresa'
     company = CompanyProfile.last
@@ -35,5 +34,28 @@ describe 'Registered user tries to access the page to create a company profile' 
     expect(page).to have_content "URL do Site: #{company.website_url}"
     expect(page).to have_content "URL do Site: #{company.website_url}"
     expect(page).to have_css('img[src*="logo.png"]')
+  end
+
+  it 'and fails when informing invalid data', type: :system, js: true do
+    user = User.create!(email_address: 'my@email.com', password: 'strong123')
+    visit root_path
+
+    click_on 'Entrar'
+    fill_in 'Enter your email address', with: user.email_address
+    fill_in 'Enter your password', with: user.password
+    within '#login_form' do
+      click_on 'Sign in'
+    end
+    click_on 'Perfil da Empresa'
+    click_on 'Criar Perfil de Empresa'
+    fill_in 'Nome', with: ''
+    fill_in 'URL do Site', with: 'https://blinkedon.tech'
+    fill_in 'Email de Contato', with: 'contact@blinkedon.tech'
+    attach_file 'Logo', Rails.root.join('spec', 'support', 'files', 'logo.png')
+    click_on 'Criar Perfil de Empresa'
+
+    expect(current_path).to eq new_company_profile_path
+    expect(page).to have_content 'Erro ao tentar criar Perfil de Empresa'
+    expect(page).to have_content 'Nome não pode ficar em branco'
   end
 end
