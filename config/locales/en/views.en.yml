@@ -1,0 +1,7 @@
+en:
+  home:
+    index:
+      no_jobs_found: 'No jobs found'
+  shared:
+    _navbar:
+      placeholder_search: 'Search here...'
