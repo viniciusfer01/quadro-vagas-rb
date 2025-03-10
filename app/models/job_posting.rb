@@ -9,6 +9,7 @@ class JobPosting < ApplicationRecord
                   }
 
   belongs_to :company_profile
-  has_one :job_type
-  validates :description, presence: true
+  belongs_to :job_type
+
+  validates :title, :salary, :salary_currency, :salary_period, :company_profile, :job_type, :description, presence: true
 end

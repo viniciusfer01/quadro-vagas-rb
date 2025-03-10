@@ -37,8 +37,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_153542) do
     t.string "salary_period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "job_type_id", null: false
     t.text "description"
     t.index ["company_profile_id"], name: "index_job_postings_on_company_profile_id"
+    t.index ["job_type_id"], name: "index_job_postings_on_job_type_id"
   end
 
   create_table "job_types", force: :cascade do |t|
@@ -66,5 +68,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_153542) do
   end
 
   add_foreign_key "job_postings", "company_profiles"
+  add_foreign_key "job_postings", "job_types"
   add_foreign_key "sessions", "users"
 end
