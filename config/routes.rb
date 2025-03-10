@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :job_postings, only: %i[index show]
+  resources :job_postings, only: %i[show]
+  get "search", to: "home#search", as: :search_jobs, param: :query
 end

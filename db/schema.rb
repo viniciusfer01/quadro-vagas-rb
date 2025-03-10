@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_07_145805) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_08_153542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "company_profiles", force: :cascade do |t|
     t.string "name"
@@ -37,6 +38,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_07_145805) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "job_type_id", null: false
+    t.text "description"
     t.index ["company_profile_id"], name: "index_job_postings_on_company_profile_id"
     t.index ["job_type_id"], name: "index_job_postings_on_job_type_id"
   end

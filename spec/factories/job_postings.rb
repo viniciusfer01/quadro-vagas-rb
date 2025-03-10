@@ -6,5 +6,6 @@ FactoryBot.define do
     salary_currency { "USD" }
     salary_period { "Monthly" }
     job_type { create(:job_type) }
+    description { "Something" }
   end
 end
