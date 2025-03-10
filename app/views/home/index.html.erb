@@ -11,7 +11,7 @@
     <% end %>
   </ul>
 <% else %>
-  <p>There are no job postings available right now.</p>
+  <p><%= t('.no_jobs_available') %></p>
 
 <% end %>
 <% if @job_postings&.any? %>
