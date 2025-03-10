@@ -1,0 +1,10 @@
+<%= form_with model: @experience_level do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name  %>
+
+  <%= f.label :status %>
+  <%= f.select :status, ExperienceLevel.statuses.map { |key, _| [t("activerecord.attributes.experience_level.statuses.#{key}"), key] } %>
+
+  <%= f.submit "Salvar" %>
+<% end %>

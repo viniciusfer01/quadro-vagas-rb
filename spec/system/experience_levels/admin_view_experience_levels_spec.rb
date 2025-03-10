@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Admin view experience levels list' do
   it 'succesfully', type: :system, js: true  do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: 10)
+    user = User.create(email_address: 'user@email.com', password: '12345678', role: :admin)
     visit new_session_path
     fill_in 'email_address', with: 'user@email.com'
     fill_in 'password', with: '12345678'
@@ -25,7 +25,7 @@ describe 'Admin view experience levels list' do
   end
 
   it 'and there is no experience level', type: :system, js: true  do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: 10)
+    user = User.create(email_address: 'user@email.com', password: '12345678', role: :admin)
     visit new_session_path
     fill_in 'email_address', with: 'user@email.com'
     fill_in 'password', with: '12345678'

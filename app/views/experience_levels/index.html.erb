@@ -1,16 +1,21 @@
 <h1> Níveis de Experiência </h1>
 
-<% @experience_levels.each do |experience_level| %>
-
-  <%= experience_level.name %>
-  Status: <%= t(experience_level.status) %>
-
-  <%= link_to 'Editar', edit_experience_level_path(experience_level) %>
-
-  <% if experience_level.archived? %>
-    <%= link_to 'Ativar', active_experience_level_path(experience_level) %>
-  <% else %>
-    <%= link_to 'Arquivar', archive_experience_level_path(experience_level) %>
-  <% end %>
-
+<% unless @experience_levels.any? %>
+  <p>Não há nìveis de experiência cadastradados</p>
 <% end %>
+<ul>
+  <% @experience_levels.each do |experience_level| %>
+    <li id="<%= dom_id(experience_level)%>">
+      <%= experience_level.name %>
+      Status: <%= t(experience_level.status) %>
+
+      <%= link_to 'Editar', edit_experience_level_path(experience_level) %>
+
+      <% if experience_level.archived? %>
+        <%= button_to 'Ativar', active_experience_level_path(experience_level) %>
+      <% else %>
+        <%= button_to 'Arquivar', archive_experience_level_path(experience_level) %>
+      <% end %>    
+    <li>
+  <% end %>
+</ul>

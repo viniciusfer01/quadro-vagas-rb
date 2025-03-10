@@ -1,8 +1,13 @@
 require 'rails_helper'
 
-describe 'Admin create experience level' do
+describe 'Admin edit experience level' do
   it 'and must be logged in', type: :system, js: true do
-    visit new_experience_level_path
+    experience_level = ExperienceLevel.create(
+      name: "Junior",
+      status: :archived
+    )
+
+    visit edit_experience_level_path(experience_level.id)
 
     expect(current_path).to eq new_session_path
   end
@@ -14,8 +19,12 @@ describe 'Admin create experience level' do
     fill_in 'password', with: '12345678'
     click_on 'Sign in'
     sleep 2
+    experience_level = ExperienceLevel.create(
+      name: "Junior",
+      status: :archived
+    )
 
-    visit new_experience_level_path
+    visit edit_experience_level_path(experience_level.id)
 
     expect(current_path).to eq root_path
   end
@@ -27,47 +36,39 @@ describe 'Admin create experience level' do
     fill_in 'password', with: '12345678'
     click_on 'Sign in'
 
-    visit new_experience_level_path
-    fill_in 'Nome', with: 'Junior'
-    select 'Arquivado', from: 'Status'
+    ExperienceLevel.create(
+      name: "Junior",
+      status: :archived
+    )
+
+    visit experience_levels_path
+    click_on 'Editar'
+    fill_in 'Nome', with: 'Pleno'
     click_on 'Salvar'
 
-    expect(page).to have_content 'Junior'
+    expect(page).to have_content 'Pleno'
     expect(page).to have_content 'Status: Arquivado'
     expect(page).to have_content 'Editar'
     expect(page).to have_content 'Ativar'
   end
 
-  it 'And creates a active experienced level', type: :system, js: true do
+  it 'fail when name is empty', type: :system, js: true do
     user = User.create(email_address: 'user@email.com', password: '12345678', role: :admin)
     visit new_session_path
     fill_in 'email_address', with: 'user@email.com'
     fill_in 'password', with: '12345678'
     click_on 'Sign in'
 
-    visit new_experience_level_path
-    fill_in 'Nome', with: 'Junior'
-    select 'Ativo', from: 'Status'
+    ExperienceLevel.create(
+      name: "Junior",
+      status: :archived
+    )
+
+    visit experience_levels_path
+    click_on 'Editar'
+    fill_in 'Nome', with: ''
     click_on 'Salvar'
 
-    expect(page).to have_content 'Junior'
-    expect(page).to have_content 'Status: Ativo'
-    expect(page).to have_content 'Editar'
-    expect(page).to have_content 'Arquivar'
-  end
-
-  it 'fails with no name inputed', type: :system, js: true do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :admin)
-    visit new_session_path
-    fill_in 'email_address', with: 'user@email.com'
-    fill_in 'password', with: '12345678'
-    click_on 'Sign in'
-
-    visit new_experience_level_path
-    select 'Ativo', from: 'Status'
-    click_on 'Salvar'
-
-    expect(current_path).to eq new_experience_level_path
     expect(page).to have_content 'Nome não pode ficar em branco'
   end
 
@@ -77,18 +78,22 @@ describe 'Admin create experience level' do
     fill_in 'email_address', with: 'user@email.com'
     fill_in 'password', with: '12345678'
     click_on 'Sign in'
-
-    experience_level_first = ExperienceLevel.create(
+    ExperienceLevel.create(
       name: "Junior",
-      status: 0
+      status: :archived
+    )
+    experience_level_second = ExperienceLevel.create(
+      name: "Pleno",
+      status: :archived
     )
 
-    visit new_experience_level_path
+    visit experience_levels_path
+    within "#experience_level_#{experience_level_second.id}" do
+      click_on 'Editar'
+    end
     fill_in 'Nome', with: 'Junior'
-    select 'Ativo', from: 'Status'
     click_on 'Salvar'
 
-    expect(current_path).to eq new_experience_level_path
     expect(page).to have_content 'Nome já está em uso'
   end
 end
