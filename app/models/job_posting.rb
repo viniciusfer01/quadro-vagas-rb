@@ -1,4 +1,13 @@
 class JobPosting < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search_jobs,
+                  against:  [ :title, :description ],
+                  using: {
+                    trigram: {
+                      word_similarity: true
+                    }
+                  }
+
   belongs_to :company_profile
   belongs_to :job_type
   belongs_to :experience_level
