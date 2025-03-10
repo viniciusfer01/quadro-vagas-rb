@@ -13,6 +13,7 @@
 ActiveRecord::Schema[8.0].define(version: 2025_03_09_212117) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -66,6 +67,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_09_212117) do
     t.string "salary_period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["company_profile_id"], name: "index_job_postings_on_company_profile_id"
   end
 

@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :company_profiles, only: [ :index, :new, :create ]
+  get "search", to: "home#search", as: :search_jobs, param: :query
 end
