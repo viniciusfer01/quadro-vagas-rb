@@ -27,11 +27,9 @@ describe 'Registered user tries to access the page to create a company profile',
 
     expect(page).to have_content 'Perfil de Empresa criado com sucesso!'
     expect(page).to have_content 'Perfil da minha Empresa'
-    company = CompanyProfile.last
-    expect(page).to have_content "Nome: #{company.name}"
-    expect(page).to have_content "Email de Contato: #{company.contact_email}"
-    expect(page).to have_content "URL do Site: #{company.website_url}"
-    expect(page).to have_content "URL do Site: #{company.website_url}"
+    expect(page).to have_content "Nome: BlinkedOn"
+    expect(page).to have_content "Email de Contato: contact@blinkedon.tech"
+    expect(page).to have_content "URL do Site: https://blinkedon.tech"
     expect(page).to have_css('img[src*="logo.png"]')
   end
 
