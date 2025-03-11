@@ -1,7 +1,10 @@
 class JobPosting < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :search_jobs,
-                  against:  [ :title, :description ],
+                  against:  [ :title ],
+                  associated_against: {
+                    rich_text_description: [ :body ]
+                  },
                   using: {
                     trigram: {
                       word_similarity: true
