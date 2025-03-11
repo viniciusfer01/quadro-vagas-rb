@@ -27,4 +27,12 @@ describe "Visitor sees job posting", type: :system do
     expect(page).to have_content(node_job_posting.title)
     expect(page).to have_content(rails_job_posting.title)
   end
+
+  it 'and fails because job posting is inactive' do
+    job_posting = create(:job_posting, status: :inactive)
+
+    visit job_posting_path(job_posting)
+
+    expect(current_path).to eq root_path
+  end
 end

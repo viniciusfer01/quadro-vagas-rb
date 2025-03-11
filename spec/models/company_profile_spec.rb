@@ -48,6 +48,15 @@ RSpec.describe CompanyProfile, type: :model do
     end
   end
 
+  context 'enum' do
+    it { should define_enum_for(:status).with_values(active: 0, inactive: 1) }
+
+    it "has default status as active" do
+      company = CompanyProfile.new
+      expect(company.status).to eq("active")
+    end
+  end
+
   describe '#format' do
     context 'email' do
       it { should allow_value('user@example.com').for(:contact_email) }

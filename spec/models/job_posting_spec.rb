@@ -11,4 +11,13 @@ RSpec.describe JobPosting, type: :model do
     it { should belong_to :job_type }
     it { should validate_presence_of(:description) }
   end
+
+  context 'enum' do
+    it { should define_enum_for(:status).with_values(active: 0, inactive: 1) }
+
+    it "has default status as active" do
+      jobposting = JobPosting.new
+      expect(jobposting.status).to eq("active")
+    end
+  end
 end
