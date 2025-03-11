@@ -7,7 +7,7 @@ describe 'user create job post', type: :system do
     expect(page).not_to have_link 'Anunciar vaga'
   end
 
-  it 'sucessfully' do
+  it 'sucessfully', js: true do
     user = create(:user)
     create(:company_profile, user: user)
     JobType.create!(name: 'Part time')
@@ -21,10 +21,11 @@ describe 'user create job post', type: :system do
     fill_in 'Título', with: 'Desenvolvedor backend'
     select 'Mensal', from: 'Período do salário'
     select 'BRL', from: 'Moeda'
-    fill_in 'Salário', with: '1234,12'
+    fill_in 'Salário', with: '1234'
     select 'Part time', from: 'Tipo de trabalho'
     select 'Remoto', from: 'Arranjo de trabalho'
     select 'Junior', from: 'Nível de experiência'
+    find('trix-editor').click.set("teste")
     click_on 'Anunciar'
 
     expect(page).to have_content 'Anúncio criado com sucesso'
