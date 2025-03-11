@@ -2,3 +2,6 @@ pt-BR:
   home:
     search:
       alert: 'Por favor, digite algum valor para a busca'
+  users:
+    toggle_status:
+      success: 'Status alterado com sucesso.'

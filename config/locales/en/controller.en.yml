@@ -2,3 +2,6 @@ en:
   home:
     search:
       alert: 'Please, enter a search term'
+  users:
+    toggle_status:
+      success: 'Status changed successfully.'

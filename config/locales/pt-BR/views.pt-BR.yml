@@ -6,3 +6,9 @@ pt-BR:
   shared:
     _navbar:
       placeholder_search: 'Pesquise aqui...'
+  users:
+    show:
+      active: 'Ativo'
+      disabled: 'Desativado'
+      activate: 'Ativar usuário'
+      deactivate: 'Desativar usuário'
