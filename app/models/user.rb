@@ -1,20 +1,40 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :sessions, dependent: :destroy
-  has_one :company_profile
+  has_one :company_profile, dependent: :destroy
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
-  enum :role, { regular: 0, admin: 10 }
+  default_scope { where(status: :active) }
 
-  validates :name, :last_name, :email_address, :password, :password_confirmation, presence: true
+  enum :role, { regular: 0, admin: 10 }
+  enum :status, { active: 0, inactive: 1 }
+
+  validates :name, :last_name, :email_address, :status, presence: true
   validates :email_address, uniqueness: { case_sensitive: false }
   validates :email_address, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
-  validates :password, confirmation: true
-  validates :password, length: { minimum: 6 }
+  validates :password, confirmation: true, length: { minimum: 6 }, if: -> { password.present? }
+  validates :password_confirmation, presence: true, if: -> { password.present? }
   validate :email_address_is_not_equal_to_any_company_email, if: :email_address_present?
 
+  def toggle_status!
+    transaction do
+      inactive? ? activate! : deactivate!
+    end
+  end
+
+  def activate!
+    update!(status: :active)
+    CompanyProfile.unscoped.find_by(user_id: id)&.activate!
+  end
+
+  def deactivate!
+    update!(status: :inactive)
+    company_profile&.deactivate!
+  end
+
   private
+
   def email_address_present?
     self.email_address.present?
   end

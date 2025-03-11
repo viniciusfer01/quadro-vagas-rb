@@ -1,5 +1,10 @@
 class CompanyProfile < ApplicationRecord
   belongs_to :user
+  has_many :job_postings, dependent: :destroy
+
+  enum :status, { active: 0, inactive: 1 }
+
+  default_scope { where(status: :active) }
 
   has_one_attached :logo
 
@@ -9,6 +14,16 @@ class CompanyProfile < ApplicationRecord
   validates :user, :contact_email, uniqueness: true
   validate :logo_image_type
   validate :contact_email_is_not_equal_to_any_registered_user_email, if: :user_and_contact_email_present?
+
+  def activate!
+    update!(status: :active)
+    JobPosting.unscoped.where(company_profile_id: id).update_all(status: :active)
+  end
+
+  def deactivate!
+    update!(status: :inactive)
+    job_postings.update_all(status: :inactive)
+  end
 
   private
   def logo_image_type

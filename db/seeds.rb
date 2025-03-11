@@ -2,24 +2,23 @@
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
 # Delete all records from the database
+User.delete_all
 CompanyProfile.delete_all
 JobPosting.delete_all
 JobType.delete_all
 
+# Creates three regular users
+3.times do |n|
+  User.create!(name: "User #{n}th", last_name: "Doe", email_address: "#{n}th@email.com", password: "password123", password_confirmation: "password123", role: :regular)
+end
+
+# Creates a admin user
+User.create!(name: "John", last_name: "Doe", email_address: "john@doe.com", password: "password123", password_confirmation: "password123", role: :admin)
+
 # Creates three job types
 [ "Full Time", "Part Time", "Freelance" ].each do |job_type_name|
   JobType.create!(name: job_type_name)
-end
-
-# Creates three users
-3.times do |n|
-  User.create!(name: "User #{n}th", last_name: "Doe", email_address: "#{n}th@email.com", password: "password123", password_confirmation: "password123")
 end
 
 # Creates three company profiles
