@@ -12,6 +12,6 @@ class JobPostingsController < ApplicationController
   end
 
   def check_inactive_job_posting
-    redirect_to root_path if @job_posting.inactive?
+    redirect_to root_path if @job_posting.inactive? && (Current.user&.regular? || !Current.user)
   end
 end
