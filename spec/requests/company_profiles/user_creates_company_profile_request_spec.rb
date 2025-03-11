@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-describe 'User tries to create a company profile' do
-  it 'and fails to get the form for not being authenticated', type: :request do
+describe 'User tries to create a company profile', type: :request do
+  it 'and fails to get the form for not being authenticated' do
     get(new_company_profile_path)
 
     expect(response).to redirect_to new_session_path
     expect(response.status).to eq 302
   end
 
-  it 'and fails to get the form because they already have a company profile', type: :request do
+  it 'and fails to get the form because they already have a company profile' do
     user = create(:user)
     create(:company_profile, user: user)
     cookie_jar = ActionDispatch::Request.new(Rails.application.env_config.deep_dup).cookie_jar
@@ -23,7 +23,7 @@ describe 'User tries to create a company profile' do
     expect(response.status).to eq 302
   end
 
-  it 'and fails to create a company profile for being unauthenticated', type: :request do
+  it 'and fails to create a company profile for being unauthenticated' do
     user = create(:user)
     create(:company_profile, user: user)
     file = Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'files', 'logo.jpg'), 'image/jpg')
@@ -39,7 +39,7 @@ describe 'User tries to create a company profile' do
     expect(response.status).to eq 302
   end
 
-  it 'and fails to create a company profile because they already have one', type: :request do
+  it 'and fails to create a company profile because they already have one' do
     user = create(:user)
     create(:company_profile, user: user)
     cookie_jar = ActionDispatch::Request.new(Rails.application.env_config.deep_dup).cookie_jar

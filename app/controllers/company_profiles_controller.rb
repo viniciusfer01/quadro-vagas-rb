@@ -1,15 +1,11 @@
 class CompanyProfilesController < ApplicationController
+  before_action :redirect_to_root_if_user_already_has_a_company_profile, only: [ :new, :create ]
+  before_action :redirect_to_new_if_user_has_no_company_profile, only: [ :show ]
   def new
-    redirect_to_root_if_user_already_has_a_company_profile
-    return if performed?
-
     @company_profile = CompanyProfile.new
   end
 
   def create
-    redirect_to_root_if_user_already_has_a_company_profile
-    return if performed?
-
     @company_profile = Current.user.build_company_profile(company_profile_params)
 
     if @company_profile.save
@@ -22,9 +18,6 @@ class CompanyProfilesController < ApplicationController
   end
 
   def show
-    redirect_to_new_if_user_has_no_company_profile
-    return if performed?
-
     @company_profile = Current.user.company_profile
   end
 

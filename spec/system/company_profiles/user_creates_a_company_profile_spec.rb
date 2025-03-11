@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-describe 'Registered user tries to access the page to create a company profile' do
-  it 'but first, has to be signed in', type: :system do
+describe 'Registered user tries to access the page to create a company profile', type: :system do
+  it 'but first, has to be signed in' do
     create(:user)
     visit root_path
 
     expect(page).not_to have_link 'Perfil da Empresa'
   end
 
-  it 'and succeeds', type: :system, js: true do
+  it 'and succeeds', js: true do
     user = create(:user)
     visit root_path
 
@@ -35,7 +35,7 @@ describe 'Registered user tries to access the page to create a company profile' 
     expect(page).to have_css('img[src*="logo.png"]')
   end
 
-  it 'and fails when informing invalid data', type: :system, js: true do
+  it 'and fails when informing invalid data', js: true do
     user = create(:user)
     visit root_path
 
