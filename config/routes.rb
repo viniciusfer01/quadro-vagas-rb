@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
+  resource :registration, only: [ :new, :create ]
+
   get "home/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -19,4 +21,8 @@ Rails.application.routes.draw do
     post :active, on: :member
     post :archive, on: :member
   end
+
+  resources :company_profiles, only: [ :show, :new, :create ]
+  resources :job_postings, only: %i[show]
+  get "search", to: "home#search", as: :search_jobs, param: :query
 end

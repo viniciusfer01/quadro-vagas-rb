@@ -51,11 +51,15 @@ RSpec.configure do |config|
             })
   end
 
+  include FactoryBot::Syntax::Methods
+
   config.use_transactional_fixtures = true
 
   config.filter_rails_from_backtrace!
 
   config.include AuthenticationHelper
+
+  config.include FactoryBot::Syntax::Methods
 end
 
 Shoulda::Matchers.configure do |config|
