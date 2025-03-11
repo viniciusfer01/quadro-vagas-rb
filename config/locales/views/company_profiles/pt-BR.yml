@@ -1,10 +1,9 @@
 pt-BR:
   company_profiles:
-    index:
+    show:
       company_profile_detail: 'Perfil da minha Empresa'
-      no_profile: Você ainda não tem um Perfil de Empresa associado a sua conta.
-      create_profile: Criar Perfil de Empresa
     new:
+      no_profile: 'Você ainda não tem um Perfil de Empresa associado a sua conta. Vamos criar um:'
       create_profile: Criar Perfil de Empresa
       user_already_has_a_company_profile: Você já criou um Perfil de Empresa
     create:
