@@ -59,6 +59,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_11_170530) do
     t.string "contact_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_company_profiles_on_user_id"
   end
 
   create_table "experience_levels", force: :cascade do |t|
@@ -112,6 +114,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_11_170530) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "company_profiles", "users"
   add_foreign_key "job_postings", "company_profiles"
   add_foreign_key "job_postings", "experience_levels"
   add_foreign_key "job_postings", "job_types"
