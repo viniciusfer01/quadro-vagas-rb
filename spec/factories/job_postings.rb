@@ -8,5 +8,6 @@ FactoryBot.define do
     work_arrangement { "remote" }
     job_type { create(:job_type) }
     job_location { "City, Country" }
+    description { "Something" }
   end
 end
