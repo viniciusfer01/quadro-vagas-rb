@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 describe 'Admin view experience levels list' do
+  it 'and must be logged in', type: :system, js: true do
+    visit experience_levels_path
+
+    expect(current_path).to eq new_session_path
+  end
+
+  it 'and must be logged in', type: :system, js: true do
+    visit root_path
+
+    expect(page).not_to have_content 'Níveis de Experiência'
+  end
+
   it 'succesfully', type: :system, js: true  do
     user = create(:user, role: :admin)
     visit new_session_path
@@ -11,12 +23,13 @@ describe 'Admin view experience levels list' do
       name: "Junior",
       status: :archived
     )
-    experience_level_first = ExperienceLevel.create(
+    experience_level_second = ExperienceLevel.create(
       name: "Pleno",
       status: :active
     )
 
-    visit experience_levels_path
+    visit root_path
+    click_on 'Níveis de Experiência'
 
     expect(page).to have_content 'Junior'
     expect(page).to have_content 'Status: Arquivado'
