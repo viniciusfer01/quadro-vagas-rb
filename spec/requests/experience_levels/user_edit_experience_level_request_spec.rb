@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'User edits experience level' do
-  it 'and must be logged in', type: :request do
+describe 'User edits experience level', type: :request do
+  it 'and must be logged in' do
     experience_level = ExperienceLevel.create(
       name: "Junior",
       status: :archived
@@ -11,7 +11,7 @@ describe 'User edits experience level' do
     expect(response).to redirect_to(new_session_path)
   end
 
-  it 'and user must be admin', type: :request do
+  it 'and user must be admin' do
     user = create(:user, role: :regular)
     login_as user
     experience_level = ExperienceLevel.create(
@@ -24,7 +24,7 @@ describe 'User edits experience level' do
     expect(response).to redirect_to(root_path)
   end
 
-  it 'succesfully', type: :request do
+  it 'succesfully' do
     user = create(:user, role: :admin)
     login_as user
     experience_level = ExperienceLevel.create(

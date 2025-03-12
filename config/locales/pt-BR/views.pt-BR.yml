@@ -5,6 +5,7 @@ pt-BR:
       no_jobs_available: 'Nenhuma vaga disponível no momento.'
   experience_levels:
     index:
+      add: Adicionar
       archived: Arquivar
       active: Ativar
       title: Níveis de Experiência

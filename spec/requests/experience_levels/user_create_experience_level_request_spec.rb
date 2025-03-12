@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-describe 'User create experience level' do
-  it 'and must be logged in', type: :request do
+describe 'User create experience level', type: :request  do
+  it 'and must be logged in' do
     post(experience_levels_path, params: { experience_level: { name: 'Junior', status: :archived } })
 
     expect(response).to redirect_to(new_session_path)
   end
 
-  it 'and user must be admin', type: :request do
+  it 'and user must be admin' do
     user = create(:user, role: :regular)
     login_as user
 
@@ -16,7 +16,7 @@ describe 'User create experience level' do
     expect(response).to redirect_to(root_path)
   end
 
-  it 'succesfully', type: :request do
+  it 'succesfully' do
     user = create(:user, role: :admin)
     login_as user
 
