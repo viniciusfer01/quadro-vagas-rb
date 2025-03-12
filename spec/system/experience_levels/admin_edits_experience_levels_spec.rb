@@ -29,7 +29,7 @@ describe 'Admin edit experience level' do
     fill_in 'email_address', with: user.email_address
     fill_in 'password', with: user.password
     click_on 'Sign in'
-    create(:experience_level, name: "Junior")
+    create(:experience_level, name: "Junior", status: :archived)
 
     visit experience_levels_path
     click_on 'Editar'
