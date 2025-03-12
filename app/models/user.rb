@@ -31,6 +31,7 @@ class User < ApplicationRecord
   def deactivate!
     update!(status: :inactive)
     company_profile&.deactivate!
+    sessions&.destroy_all
   end
 
   private

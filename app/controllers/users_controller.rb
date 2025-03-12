@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
   def toggle_status
     @user.toggle_status!
-    @user.sessions.destroy_all
     redirect_to user_path(@user), notice: t(".success")
   end
 
