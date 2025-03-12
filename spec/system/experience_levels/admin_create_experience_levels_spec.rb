@@ -8,10 +8,10 @@ describe 'Admin create experience level' do
   end
 
   it 'and user must be admin', type: :system, js: true do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :regular)
+    user = create(:user, role: :regular)
     visit new_session_path
-    fill_in 'email_address', with: 'user@email.com'
-    fill_in 'password', with: '12345678'
+    fill_in 'email_address', with: user.email_address
+    fill_in 'password', with: user.password
     click_on 'Sign in'
     sleep 2
 
@@ -21,10 +21,10 @@ describe 'Admin create experience level' do
   end
 
   it 'succesfully', type: :system, js: true do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :admin)
+    user = create(:user, role: :admin)
     visit new_session_path
-    fill_in 'email_address', with: 'user@email.com'
-    fill_in 'password', with: '12345678'
+    fill_in 'email_address', with: user.email_address
+    fill_in 'password', with: user.password
     click_on 'Sign in'
 
     visit new_experience_level_path
@@ -39,10 +39,10 @@ describe 'Admin create experience level' do
   end
 
   it 'And creates a active experienced level', type: :system, js: true do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :admin)
+    user = create(:user, role: :admin)
     visit new_session_path
-    fill_in 'email_address', with: 'user@email.com'
-    fill_in 'password', with: '12345678'
+    fill_in 'email_address', with: user.email_address
+    fill_in 'password', with: user.password
     click_on 'Sign in'
 
     visit new_experience_level_path
@@ -57,10 +57,10 @@ describe 'Admin create experience level' do
   end
 
   it 'fails with no name inputed', type: :system, js: true do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :admin)
+    user = create(:user, role: :admin)
     visit new_session_path
-    fill_in 'email_address', with: 'user@email.com'
-    fill_in 'password', with: '12345678'
+    fill_in 'email_address', with: user.email_address
+    fill_in 'password', with: user.password
     click_on 'Sign in'
 
     visit new_experience_level_path
@@ -72,10 +72,10 @@ describe 'Admin create experience level' do
   end
 
   it 'fails when name is repeated', type: :system, js: true do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :admin)
+    user = create(:user, role: :admin)
     visit new_session_path
-    fill_in 'email_address', with: 'user@email.com'
-    fill_in 'password', with: '12345678'
+    fill_in 'email_address', with: user.email_address
+    fill_in 'password', with: user.password
     click_on 'Sign in'
 
     experience_level_first = ExperienceLevel.create(

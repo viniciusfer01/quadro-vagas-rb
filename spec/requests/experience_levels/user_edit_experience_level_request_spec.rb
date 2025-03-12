@@ -12,7 +12,7 @@ describe 'User edits experience level' do
   end
 
   it 'and user must be admin', type: :request do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :regular)
+    user = create(:user, role: :regular)
     login_as user
     experience_level = ExperienceLevel.create(
       name: "Junior",
@@ -25,7 +25,7 @@ describe 'User edits experience level' do
   end
 
   it 'succesfully', type: :request do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :admin)
+    user = create(:user, role: :admin)
     login_as user
     experience_level = ExperienceLevel.create(
       name: "Junior",

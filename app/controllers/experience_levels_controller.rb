@@ -40,7 +40,7 @@ class ExperienceLevelsController < ApplicationController
 
   def archive
     @experience_level = ExperienceLevel.find(params[:id])
-    @experience_level.archive!
+    @experience_level.archived!
     if @experience_level.save
       redirect_back_or_to root_path
     end

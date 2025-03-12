@@ -2,10 +2,7 @@ require 'rails_helper'
 
 describe 'Admin edit experience level' do
   it 'and must be logged in', type: :system, js: true do
-    experience_level = ExperienceLevel.create(
-      name: "Junior",
-      status: :archived
-    )
+    experience_level = create(:experience_level, name: "Junior")
 
     visit edit_experience_level_path(experience_level.id)
 
@@ -13,16 +10,13 @@ describe 'Admin edit experience level' do
   end
 
   it 'and user must be admin', type: :system, js: true do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :regular)
+    user = create(:user, role: :regular)
     visit new_session_path
-    fill_in 'email_address', with: 'user@email.com'
-    fill_in 'password', with: '12345678'
+    fill_in 'email_address', with: user.email_address
+    fill_in 'password', with: user.password
     click_on 'Sign in'
     sleep 2
-    experience_level = ExperienceLevel.create(
-      name: "Junior",
-      status: :archived
-    )
+    experience_level = create(:experience_level, name: "Junior")
 
     visit edit_experience_level_path(experience_level.id)
 
@@ -30,16 +24,12 @@ describe 'Admin edit experience level' do
   end
 
   it 'succesfully', type: :system, js: true do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :admin)
+    user = create(:user, role: :admin)
     visit new_session_path
-    fill_in 'email_address', with: 'user@email.com'
-    fill_in 'password', with: '12345678'
+    fill_in 'email_address', with: user.email_address
+    fill_in 'password', with: user.password
     click_on 'Sign in'
-
-    ExperienceLevel.create(
-      name: "Junior",
-      status: :archived
-    )
+    create(:experience_level, name: "Junior")
 
     visit experience_levels_path
     click_on 'Editar'
@@ -53,16 +43,12 @@ describe 'Admin edit experience level' do
   end
 
   it 'fail when name is empty', type: :system, js: true do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :admin)
+    user = create(:user, role: :admin)
     visit new_session_path
-    fill_in 'email_address', with: 'user@email.com'
-    fill_in 'password', with: '12345678'
+    fill_in 'email_address', with: user.email_address
+    fill_in 'password', with: user.password
     click_on 'Sign in'
-
-    ExperienceLevel.create(
-      name: "Junior",
-      status: :archived
-    )
+    create(:experience_level, name: "Junior")
 
     visit experience_levels_path
     click_on 'Editar'
@@ -73,19 +59,13 @@ describe 'Admin edit experience level' do
   end
 
   it 'fails when name is repeated', type: :system, js: true do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :admin)
+    user = create(:user, role: :admin)
     visit new_session_path
-    fill_in 'email_address', with: 'user@email.com'
-    fill_in 'password', with: '12345678'
+    fill_in 'email_address', with: user.email_address
+    fill_in 'password', with: user.password
     click_on 'Sign in'
-    ExperienceLevel.create(
-      name: "Junior",
-      status: :archived
-    )
-    experience_level_second = ExperienceLevel.create(
-      name: "Pleno",
-      status: :archived
-    )
+    create(:experience_level, name: "Junior")
+    experience_level_second = create(:experience_level, name: "Pleno")
 
     visit experience_levels_path
     within "#experience_level_#{experience_level_second.id}" do

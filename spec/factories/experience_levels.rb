@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :experience_level do
-    name { "MyString" }
+    name { 'Junior' }
+    status { :archived }
   end
 end

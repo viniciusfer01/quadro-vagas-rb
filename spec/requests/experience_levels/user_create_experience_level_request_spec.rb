@@ -8,7 +8,7 @@ describe 'User create experience level' do
   end
 
   it 'and user must be admin', type: :request do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :regular)
+    user = create(:user, role: :regular)
     login_as user
 
     post(experience_levels_path, params: { experience_level: { name: 'Junior', status: :archived } })
@@ -17,7 +17,7 @@ describe 'User create experience level' do
   end
 
   it 'succesfully', type: :request do
-    user = User.create(email_address: 'user@email.com', password: '12345678', role: :admin)
+    user = create(:user, role: :admin)
     login_as user
 
     post(experience_levels_path, params: { experience_level: { name: 'Junior', status: :archived } })

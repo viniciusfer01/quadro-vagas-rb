@@ -1,11 +1,11 @@
-<h1> Editar Nível de Experiência </h1>
-
-<% if @experience_level.errors.any? %>
-  <ul>
-    <% @experience_level.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= render "form" %>
+<div class="flex flex-col gap-8">
+  <h1>Editar Nível de Experiência </h1>
+  <% if @experience_level.errors.any? %>
+    <ul>
+      <% @experience_level.errors.full_messages.each do |message| %>
+        <li class="container px-5 py-3 my-4 mx-auto text-sm rounded-lg bg-red-200 text-red-500"><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= render 'form' %>
+</div>
