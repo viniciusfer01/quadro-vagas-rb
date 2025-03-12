@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Admin edit experience level' do
-  it 'and must be logged in', type: :system, js: true do
+describe 'Admin edit experience level', type: :system do
+  it 'and must be logged in', js: true do
     experience_level = create(:experience_level, name: "Junior")
 
     visit edit_experience_level_path(experience_level.id)
@@ -9,7 +9,7 @@ describe 'Admin edit experience level' do
     expect(current_path).to eq new_session_path
   end
 
-  it 'and user must be admin', type: :system, js: true do
+  it 'and user must be admin', js: true do
     user = create(:user, role: :regular)
     visit new_session_path
     fill_in 'email_address', with: user.email_address
@@ -23,7 +23,7 @@ describe 'Admin edit experience level' do
     expect(current_path).to eq root_path
   end
 
-  it 'succesfully', type: :system, js: true do
+  it 'succesfully', js: true do
     user = create(:user, role: :admin)
     visit new_session_path
     fill_in 'email_address', with: user.email_address
@@ -42,7 +42,7 @@ describe 'Admin edit experience level' do
     expect(page).to have_content 'Ativar'
   end
 
-  it 'fail when name is empty', type: :system, js: true do
+  it 'fail when name is empty', js: true do
     user = create(:user, role: :admin)
     visit new_session_path
     fill_in 'email_address', with: user.email_address
@@ -58,7 +58,7 @@ describe 'Admin edit experience level' do
     expect(page).to have_content 'Nome não pode ficar em branco'
   end
 
-  it 'fails when name is repeated', type: :system, js: true do
+  it 'fails when name is repeated', js: true do
     user = create(:user, role: :admin)
     visit new_session_path
     fill_in 'email_address', with: user.email_address

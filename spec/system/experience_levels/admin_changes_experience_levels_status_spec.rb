@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Admin changes experience level status' do
-  it 'sucefuly', type: :system, js: true  do
+describe 'Admin changes experience level status', type: :system do
+  it 'sucefuly', js: true  do
     user = create(:user, role: :admin)
     visit new_session_path
     fill_in 'email_address', with: user.email_address

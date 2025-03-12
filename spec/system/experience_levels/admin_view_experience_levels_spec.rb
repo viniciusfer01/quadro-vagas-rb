@@ -1,19 +1,19 @@
 require 'rails_helper'
 
-describe 'Admin view experience levels list' do
-  it 'and must be logged in', type: :system, js: true do
+describe 'Admin view experience levels list', type: :system do
+  it 'and must be logged in', js: true do
     visit experience_levels_path
 
     expect(current_path).to eq new_session_path
   end
 
-  it 'and must be logged in', type: :system, js: true do
+  it 'and must be logged in', js: true do
     visit root_path
 
     expect(page).not_to have_content 'Níveis de Experiência'
   end
 
-  it 'succesfully', type: :system, js: true  do
+  it 'succesfully', js: true  do
     user = create(:user, role: :admin)
     visit new_session_path
     fill_in 'email_address', with: user.email_address
@@ -37,7 +37,7 @@ describe 'Admin view experience levels list' do
     expect(page).to have_content 'Status: Ativo'
   end
 
-  it 'and there is no experience level', type: :system, js: true  do
+  it 'and there is no experience level', js: true  do
     user = create(:user, role: :admin)
     visit new_session_path
     fill_in 'email_address', with: user.email_address
