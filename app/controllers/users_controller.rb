@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def toggle_status
     @user.toggle_status!
+    @user.sessions.destroy_all
     redirect_to user_path(@user), notice: t(".success")
   end
 
@@ -23,6 +24,6 @@ class UsersController < ApplicationController
   end
 
   def require_admin
-    redirect_to root_path, alert: "Access denied" unless Current.user&.admin?
+    redirect_to root_path, alert: t(".unauthorized") unless Current.user&.admin?
   end
 end

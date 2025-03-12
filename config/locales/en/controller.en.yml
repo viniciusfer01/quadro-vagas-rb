@@ -5,3 +5,5 @@ en:
   users:
     toggle_status:
       success: 'Status changed successfully.'
+    require_admin:
+      unauthorized: 'Access denied.'

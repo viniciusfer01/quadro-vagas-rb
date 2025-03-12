@@ -5,3 +5,5 @@ pt-BR:
   users:
     toggle_status:
       success: 'Status alterado com sucesso.'
+    require_admin:
+      unauthorized: 'Acesso negado.'
