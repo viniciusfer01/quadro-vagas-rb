@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-8">
-  <h1>Editar Nível de Experiência </h1>
+  <h1><%= t(".title") %></h1>
   <% if @experience_level.errors.any? %>
     <ul>
       <% @experience_level.errors.full_messages.each do |message| %>
