@@ -33,17 +33,13 @@ class ExperienceLevelsController < ApplicationController
   def active
     @experience_level = ExperienceLevel.find(params[:id])
     @experience_level.active!
-    if @experience_level.save
-      redirect_back_or_to root_path
-    end
+    redirect_back_or_to root_path
   end
 
   def archive
     @experience_level = ExperienceLevel.find(params[:id])
     @experience_level.archived!
-    if @experience_level.save
-      redirect_back_or_to root_path
-    end
+    redirect_back_or_to root_path
   end
 
   private
