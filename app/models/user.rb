@@ -5,8 +5,6 @@ class User < ApplicationRecord
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
-  default_scope { where(status: :active) }
-
   enum :role, { regular: 0, admin: 10 }
   enum :status, { active: 0, inactive: 1 }
 
@@ -33,12 +31,10 @@ class User < ApplicationRecord
 
   def activate!
     update!(status: :active)
-    CompanyProfile.unscoped.find_by(user_id: id)&.activate!
   end
 
   def deactivate!
     update!(status: :inactive)
-    company_profile&.deactivate!
     sessions&.destroy_all
   end
 

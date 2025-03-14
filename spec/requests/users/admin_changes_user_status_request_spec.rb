@@ -16,9 +16,13 @@ describe 'User tries to change the status of another user', type: :request do
 
       patch toggle_status_user_path(user)
 
-      expect(user.reload.status).to eq "inactive"
-      expect(company.reload.status).to eq "inactive"
-      expect(job_posting.reload.status).to eq "inactive"
+      user.reload
+      company.reload
+      job_posting.reload
+
+      expect(user.status).to eq "inactive"
+      expect(company.status).to eq "inactive"
+      expect(job_posting.status).to eq "inactive"
       expect(response).to redirect_to users_path
       expect(response.status).to eq 302
     end
@@ -41,8 +45,8 @@ describe 'User tries to change the status of another user', type: :request do
 
     it 'and activate with succees' do
       user = create(:user, status: :inactive)
-      company = create(:company_profile, status: :inactive, user: user)
-      job_posting = create(:job_posting, status: :inactive, company_profile: company)
+      company = create(:company_profile, user: user)
+      job_posting = create(:job_posting, company_profile: company)
       admin = create(:user, email_address: 'admin@user.com', role: :admin)
 
       cookie_jar = ActionDispatch::Request.new(Rails.application.env_config.deep_dup).cookie_jar

@@ -6,7 +6,7 @@ describe 'User tries to sign in', type: :system do
 
     visit new_session_path
 
-    fill_in 'email_address', with: 'user@example.com'
+    fill_in 'email_address', with: 'user@user.com'
     fill_in 'password', with: 'password123'
     click_button 'Sign in'
 

@@ -8,10 +8,10 @@ class JobPostingsController < ApplicationController
   private
 
   def set_job_posting
-    @job_posting = JobPosting.unscoped.find(params[:id])
+    @job_posting = JobPosting.find(params[:id])
   end
 
   def check_inactive_job_posting
-    redirect_to root_path if @job_posting.inactive? && (Current.user&.regular? || !Current.user)
+    redirect_to root_path if @job_posting.status == "inactive" && (Current.user&.regular? || !Current.user)
   end
 end

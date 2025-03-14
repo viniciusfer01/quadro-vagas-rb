@@ -48,12 +48,17 @@ RSpec.describe CompanyProfile, type: :model do
     end
   end
 
-  context 'enum' do
-    it { should define_enum_for(:status).with_values(active: 0, inactive: 1) }
-
-    it "has default status as active" do
-      company = CompanyProfile.new
+  context 'status' do
+    it "should be active if user is active" do
+      user = create(:user, status: :active)
+      company = create(:company_profile, user: user)
       expect(company.status).to eq("active")
+    end
+
+    it "should be inactive if user is inactive" do
+      user = create(:user, status: :inactive)
+      company = create(:company_profile, user: user)
+      expect(company.status).to eq("inactive")
     end
   end
 

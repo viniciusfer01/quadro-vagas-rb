@@ -70,8 +70,8 @@ describe 'User visits users list', type: :system do
 
     it 'and activate with succees' do
       user = create(:user, status: :inactive)
-      company = create(:company_profile, status: :inactive, user: user)
-      job_posting = create(:job_posting, status: :inactive, company_profile: company)
+      company = create(:company_profile, user: user)
+      job_posting = create(:job_posting, company_profile: company)
       admin = create(:user, email_address: 'admin@user.com', role: :admin)
 
       Current.session = admin.sessions.create!

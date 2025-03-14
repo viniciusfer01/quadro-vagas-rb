@@ -12,12 +12,19 @@ RSpec.describe JobPosting, type: :model do
     it { should validate_presence_of(:description) }
   end
 
-  context 'enum' do
-    it { should define_enum_for(:status).with_values(active: 0, inactive: 1) }
+  context 'status' do
+    it "should be active if company is active" do
+      user = create(:user, status: :active)
+      company = create(:company_profile, user: user)
+      job_posting = create(:job_posting, company_profile: company)
+      expect(job_posting.status).to eq("active")
+    end
 
-    it "has default status as active" do
-      jobposting = JobPosting.new
-      expect(jobposting.status).to eq("active")
+    it "should be inactive if company is inactive" do
+      user = create(:user, status: :inactive)
+      company = create(:company_profile, user: user)
+      job_posting = create(:job_posting, company_profile: company)
+      expect(job_posting.status).to eq("inactive")
     end
   end
 end
