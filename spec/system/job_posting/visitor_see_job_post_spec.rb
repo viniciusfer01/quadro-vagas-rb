@@ -16,16 +16,13 @@ describe "Visitor sees job posting", type: :system do
 
   it "and goes back to job postings list" do
     node_job_posting = create(:job_posting)
-    second_user = create(:user, email_address: 'second@user.com')
-    second_company = create(:company_profile, user: second_user, contact_email: 'second@company.com')
-    rails_job_posting = create(:job_posting, company_profile: second_company)
 
     visit root_path
     click_on node_job_posting.title
     click_on "Back"
 
     expect(page).to have_content(node_job_posting.title)
-    expect(page).to have_content(rails_job_posting.title)
+    expect(current_path).to eq root_path
   end
 
   it 'and fails because job posting is inactive' do
