@@ -15,6 +15,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_14_164123) do
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
 
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -57,19 +67,23 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_14_164123) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
   end
 
   create_table "job_postings", force: :cascade do |t|
     t.string "title"
     t.bigint "company_profile_id", null: false
-    t.string "salary"
-    t.string "salary_currency"
-    t.string "salary_period"
+    t.decimal "salary"
+    t.integer "salary_currency"
+    t.integer "salary_period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "job_type_id", null: false
-    t.text "description"
+    t.integer "work_arrangement"
+    t.bigint "experience_level_id", null: false
+    t.string "job_location"
     t.index ["company_profile_id"], name: "index_job_postings_on_company_profile_id"
+    t.index ["experience_level_id"], name: "index_job_postings_on_experience_level_id"
     t.index ["job_type_id"], name: "index_job_postings_on_job_type_id"
   end
 
@@ -104,6 +118,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_14_164123) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "company_profiles", "users"
   add_foreign_key "job_postings", "company_profiles"
+  add_foreign_key "job_postings", "experience_levels"
   add_foreign_key "job_postings", "job_types"
   add_foreign_key "sessions", "users"
 end
