@@ -1,28 +1,21 @@
 class UsersController < ApplicationController
-  allow_unauthenticated_access only: %i[show]
-  before_action :resume_session, only: %i[show]
-  before_action :set_user, only: %i[show toggle_status]
-  before_action :check_inactive_user, only: %i[show]
-  before_action :require_admin, only: %i[ toggle_status ]
+  before_action :only_admin_access, only: %i[ index toggle_status ]
+  before_action :set_user, only: %i[ toggle_status ]
 
-  def show; end
+  def index
+    @users = User.unscoped.order(:name)
+  end
 
   def toggle_status
+    return redirect_to users_path, alert: t(".change_admin_status_alert") if @user.admin?
+
     @user.toggle_status!
-    redirect_to user_path(@user), notice: t(".success")
+    redirect_to users_path, notice: t(".success")
   end
 
   private
 
   def set_user
     @user = User.unscoped.find(params[:id])
-  end
-
-  def check_inactive_user
-    redirect_to root_path if @user.inactive? && (Current.user&.regular? || !Current.user)
-  end
-
-  def require_admin
-    redirect_to root_path, alert: t(".unauthorized") unless Current.user&.admin?
   end
 end

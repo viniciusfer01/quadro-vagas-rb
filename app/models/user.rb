@@ -17,6 +17,14 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { password.present? }
   validate :email_address_is_not_equal_to_any_company_email, if: :email_address_present?
 
+  def human_status
+    I18n.t "activerecord.attributes.user.statuses.#{status}"
+  end
+
+  def human_role
+    I18n.t "activerecord.attributes.user.roles.#{role}"
+  end
+
   def toggle_status!
     transaction do
       inactive? ? activate! : deactivate!

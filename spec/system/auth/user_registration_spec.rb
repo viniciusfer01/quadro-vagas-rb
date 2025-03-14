@@ -14,6 +14,8 @@ describe 'User registration', type: :system do
 
     expect(page).to have_content 'Usuário criado com sucesso.'
 
+    visit root_path
+
     within 'header nav' do
       expect(page).to have_button 'Sair'
     end

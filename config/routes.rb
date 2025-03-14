@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :users, only: [ :show ] do
+  resources :users, only: [ :index ] do
     member do
       patch :toggle_status
     end
