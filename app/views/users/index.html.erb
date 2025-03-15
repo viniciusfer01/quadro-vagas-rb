@@ -15,8 +15,8 @@
           <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500"><%= user.name %></td>
           <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500"><%= user.last_name %></td>
           <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500"><%= user.email_address %></td>
-          <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500"><%= user.human_role %></td>
-          <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 <%= user.active? ? "text-green-500" : "text-red-500" %>"><%= user.human_status %></td>
+          <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500"><%= User.human_enum_name('role', user.role) %></td>
+          <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 <%= user.active? ? "text-green-500" : "text-red-500" %>"><%= User.human_enum_name('status', user.status) %></td>
           <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500"><%= l user.created_at, format: :long %></td>
           <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500">
             <% if user.active? %>
