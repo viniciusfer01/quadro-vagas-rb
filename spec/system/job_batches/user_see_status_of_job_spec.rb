@@ -18,10 +18,10 @@ describe 'user see status of job', type: :system do
     redis.set("job-data-user-#{user.id}-lines-error-list", [].to_json)
 
     login_as(user)
-    visit job_batch_index_path
+    visit batch_status_path
     arrayLine.each_with_index { |line, index| BatchImportJob.perform_now(line, user.id, index) }
 
-    expect(current_path).to eq(job_batch_index_path)
+    expect(current_path).to eq(batch_status_path)
     expect(page).to have_content('Linhas Processados: 3')
     expect(page).to have_content('Registrados com Sucesso: 3')
     expect(page).to have_content('Linhas com Erro: 0')

@@ -8,11 +8,11 @@ describe 'user send a file', type: :system do
 
     login_as(user)
     visit root_path
-    click_on 'Gerar Dados'
-    attach_file 'Enviar Arquivo', Rails.root.join('spec/fixtures/job_postings.txt')
+    click_on 'Anunciar vagas em lote'
+    attach_file 'upload', Rails.root.join('spec/fixtures/job_postings.txt')
     click_on 'Enviar'
 
-    expect(current_path).to eq(job_batch_index_path)
+    expect(current_path).to eq(batch_status_path)
     expect(page).to have_content('Tela de status')
   end
 
@@ -23,11 +23,11 @@ describe 'user send a file', type: :system do
 
     login_as(user)
     visit root_path
-    click_on 'Gerar Dados'
-    attach_file 'Enviar Arquivo', Rails.root.join('spec/fixtures/job_postings.txt')
+    click_on 'Anunciar vagas em lote'
+    attach_file 'upload', Rails.root.join('spec/fixtures/job_postings.txt')
     click_on 'Enviar'
 
-    expect(current_path).to eq(job_batch_index_path)
+    expect(current_path).to eq(batch_status_path)
     expect(page).to have_content('Arquivo recebido com sucesso.')
   end
 
@@ -36,7 +36,7 @@ describe 'user send a file', type: :system do
 
     login_as(user)
     visit root_path
-    click_on 'Gerar Dados'
+    click_on 'Anunciar vagas em lote'
     click_on 'Enviar'
 
     expect(current_path).to eq(new_job_batch_path)
@@ -48,8 +48,8 @@ describe 'user send a file', type: :system do
 
     login_as(user)
     visit root_path
-    click_on 'Gerar Dados'
-    attach_file 'Enviar Arquivo', Rails.root.join('spec/support/files/logo.jpeg')
+    click_on 'Anunciar vagas em lote'
+    attach_file 'upload', Rails.root.join('spec/support/files/logo.jpeg')
     click_on 'Enviar'
 
     expect(current_path).to eq(new_job_batch_path)

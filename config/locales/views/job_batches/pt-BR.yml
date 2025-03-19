@@ -1,6 +1,5 @@
 pt-BR:
   job_batches:
-  batch_uploads:
     user_invalid: 'Essa página não existe.'
     new:
       upload_file: 'Enviar Arquivo'

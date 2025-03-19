@@ -1,6 +1,5 @@
 en:
   job_batches:
-  batch_uploads:
     user_invalid: 'That page does not exist.'
     new:
       upload_file: 'Upload File'

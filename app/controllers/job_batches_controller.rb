@@ -1,5 +1,5 @@
 class JobBatchesController < ApplicationController
-  # before_action :verify_user
+  before_action :verify_user
 
   def new
   end
@@ -8,20 +8,20 @@ class JobBatchesController < ApplicationController
     uploaded_file = params[:upload]
 
     if uploaded_file.nil?
-      flash.now[:alert] = t(".error")
+      flash.now[:alert] = t("job_batches.create.error")
       return render :new, status: :unprocessable_entity
     end
 
     file_path = Rails.root.join("tmp", uploaded_file.original_filename)
 
     if !text_file?(file_path)
-      flash.now[:alert] = t(".type_error")
+      flash.now[:alert] = t("job_batches.create.type_error")
       return render :new, status: :unprocessable_entity
     end
 
     File.open(file_path, "wb") { |file| file.write(uploaded_file.read) }
     ProcessTxtJob.perform_later(file_path.to_s, Current.user.id)
-    redirect_to batch_status_path, notice: t(".success")
+    redirect_to batch_status_path, notice: t("job_batches.create.success")
   end
 
   def batch_status
@@ -31,7 +31,7 @@ class JobBatchesController < ApplicationController
     @remaining = redis.get("job-data-user-#{user_id}-remaining-lines").to_i
     @successful_registrations = redis.get("job-data-user-#{user_id}-successful-registrations").to_i
     @errors = redis.get("job-data-user-#{user_id}-lines-error").to_i
-    @errors_list = JSON.parse(redis.get("job-data-user-#{user_id}-lines-error-list") || "[]")
+    @errors_list = JSON.parse(redis.get("job-data-user-#{user_id}-lines-error-list"))
   end
 
   private
@@ -42,6 +42,6 @@ class JobBatchesController < ApplicationController
   end
 
   def verify_user
-    redirect_to root_path, notice: t(".user_invalid") unless Current.user.admin?
+    redirect_to root_path, notice: "Essa página não existe." unless Current.user.admin?
   end
 end
