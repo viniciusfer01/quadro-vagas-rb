@@ -1,0 +1,10 @@
+<div class="flex flex-col">
+    <%= turbo_stream_from "progress_channel" %>
+    <h1>Tela de status</h1>
+
+
+    <div id="progress_channel_container" class="flex flex-col justify-start items-start">
+        <%= render partial: "shared/progress_channel", locals: { processed: @processed, remaining: @remaining, 
+        successful_registrations: @successful_registrations, errors: @errors, errors_list: @errors_list } %>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+U,usuario12@example.com, Joao, Almeida
+U,usuario22@example.com, Erika, Campos
+U,usuario32@example.com, Otavio, Lins
+E,Empresa A1,https://www.empresa-a1.com,contato@empresa-a.com,1
+E,Empresa B1,https://www.empresa-b1.com,contato@empresa-b.com,2
+V,Desenvolvedor Ruby on Rails, Alguma descrição, 5000,BRL,Mensal,Presencial,1,São Paulo,2,1
+V,Desenvolvedor Frontend,Alguma descrição, 6000,BRL,Mensal,Remoto,2,Remoto,1,2
+V,Gerente de Projetos, Alguma descrição, 8000,BRL,Mensal,Híbrido,3,São Paulo,3,3
+U,usuario42@example.com, Maria, Silva

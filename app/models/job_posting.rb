@@ -22,4 +22,11 @@ class JobPosting < ApplicationRecord
 
   validates :title, :salary, :salary_currency, :salary_period, :company_profile, :work_arrangement, :description, presence: true
   validates :job_location, presence: true, if: -> { in_person? || hybrid? }
+
+  def self.translate_enum(value, enum_key, from_locale, to_locale)
+    translations = I18n.t("activerecord.attributes.job_posting.#{enum_key}")
+    key = translations.key(value)
+    return nil unless key
+    I18n.t("activerecord.attributes.job_posting.#{enum_key}.#{key}", locale: to_locale)
+  end
 end

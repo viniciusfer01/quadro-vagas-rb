@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      job_posting:
+        one: Job Posting
+    attributes:
+      job_posting:
+        work_arrangements:
+          remote: Remote
+          hybrid: Hybrid
+          in_person: In_person
+        salary_periods:
+          daily: Daily
+          weekly: Weekly
+          monthly: Monthly
+          yearly: Yearly

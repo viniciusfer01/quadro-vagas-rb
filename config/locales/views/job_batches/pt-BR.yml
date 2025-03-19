@@ -1,0 +1,12 @@
+pt-BR:
+  job_batches:
+  batch_uploads:
+    user_invalid: 'Essa página não existe.'
+    new:
+      upload_file: 'Enviar Arquivo'
+      title: 'Popule a base de dados com um arquivo.'
+      send: 'Enviar'
+    create:
+      success: "Arquivo recebido com sucesso."
+      error: "É necessário enviar um arquivo."
+      type_error: "O tipo do arquivo não é aceito."

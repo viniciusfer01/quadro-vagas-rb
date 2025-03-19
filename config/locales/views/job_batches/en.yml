@@ -1,0 +1,12 @@
+en:
+  job_batches:
+  batch_uploads:
+    user_invalid: 'That page does not exist.'
+    new:
+      upload_file: 'Upload File'
+      title: 'Populate the database with a file.'
+      send: 'Send'
+    create:
+      success: "File received successfully."
+      error: "A file must be uploaded."
+      type_error: "The file type is not supported."

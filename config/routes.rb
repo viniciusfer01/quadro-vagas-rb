@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   resources :company_profiles, only: [ :show, :new, :create ]
   resources :job_postings, only: %i[show new create]
   get "search", to: "home#search", as: :search_jobs, param: :query
+  resources :job_batches, only: [ :new, :create ]
+  get "batch_status", to: "job_batches#batch_status"
 end

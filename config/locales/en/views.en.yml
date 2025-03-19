@@ -6,3 +6,4 @@ en:
   shared:
     _navbar:
       placeholder_search: 'Search here...'
+      upload_script: 'Upload Data'
